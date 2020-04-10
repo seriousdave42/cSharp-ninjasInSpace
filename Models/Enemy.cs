@@ -2,13 +2,12 @@ using System;
 
 namespace NinjasInSpace.Models
 {
-    public abstract class Hero
+    public class Enemy
     {
         public string Name;
         public int Dexterity;
         public int Strength;
         public int Intelligence;
-        public int MaxHealth;
         protected int health;
 
         public int Health
@@ -24,24 +23,23 @@ namespace NinjasInSpace.Models
 
         }
 
-        public Hero(string name)
+        public Enemy(string name)
         {
             Name = name;
             Dexterity = 5;
             Strength = 5;
             Intelligence = 5;
-            MaxHealth = 100;
             health = 100;
         }
 
         // public abstract void SayName();
 
-        public void ShowStats()
+        public virtual void ShowStats()
         {
-            Console.WriteLine($"Name: {Name}\nDexterity: {Dexterity}\nStrength: {Strength}\nIntelligence: {Intelligence}\nMax Health: {MaxHealth}");
+            Console.WriteLine($"Name: {Name}\nDexterity: {Dexterity}\nStrength: {Strength}\nIntelligence: {Intelligence}\nHealth: {health}");
         }
 
-        public virtual void Attack(Enemy target)
+        public virtual void Attack(Hero target)
         {
             target.Health = target.Health - this.Strength*5;
             Console.WriteLine($"{this.Name} viciously strikes {target.Name} for {this.Strength*5} damage!");
